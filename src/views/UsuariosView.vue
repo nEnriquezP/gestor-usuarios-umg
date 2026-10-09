@@ -1,10 +1,16 @@
 <script setup>
+import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+
 import UsuarioCard from '../components/UsuarioCard.vue'
 import { useUsuariosStore } from '../stores/usuarios'
 
 const router = useRouter()
 const store = useUsuariosStore()
+
+onMounted(() => {
+  store.cargarUsuarios()
+})
 
 function mostrarUsuario(id) {
   store.seleccionarUsuario(id)
@@ -23,15 +29,21 @@ function mostrarUsuario(id) {
     <div class="encabezado">
       <h2>Usuarios</h2>
 
-      <p>Lista de usuarios del Gestor de Usuarios UMG.</p>
+      <p>Usuarios obtenidos desde una API REST.</p>
 
-      <p>
+      <p v-if="!store.cargando && !store.error">
         <strong>Total de usuarios:</strong>
         {{ store.totalUsuarios }}
       </p>
     </div>
 
-    <div class="lista-usuarios">
+    <p v-if="store.cargando" class="mensaje">Cargando usuarios...</p>
+
+    <p v-else-if="store.error" class="error">
+      {{ store.error }}
+    </p>
+
+    <div v-else class="lista-usuarios">
       <UsuarioCard
         v-for="usuario in store.usuarios"
         :key="usuario.id"
@@ -61,5 +73,18 @@ function mostrarUsuario(id) {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
+}
+
+.mensaje {
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.error {
+  padding: 20px;
+  background-color: #fee2e2;
+  color: #991b1b;
+  border-radius: 10px;
 }
 </style>

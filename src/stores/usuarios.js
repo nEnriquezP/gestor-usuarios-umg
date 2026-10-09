@@ -2,24 +2,9 @@ import { defineStore } from 'pinia'
 
 export const useUsuariosStore = defineStore('usuarios', {
   state: () => ({
-    usuarios: [
-      {
-        id: 1,
-        name: 'Leanne Graham',
-        email: 'sincere@april.biz',
-      },
-      {
-        id: 2,
-        name: 'Ervin Howell',
-        email: 'shanna@melissa.tv',
-      },
-      {
-        id: 3,
-        name: 'Clementine Bauch',
-        email: 'nathan@yesenia.net',
-      },
-    ],
-
+    usuarios: [],
+    cargando: false,
+    error: null,
     usuarioSeleccionadoId: null,
   }),
 
@@ -28,6 +13,25 @@ export const useUsuariosStore = defineStore('usuarios', {
   },
 
   actions: {
+    async cargarUsuarios() {
+      this.cargando = true
+      this.error = null
+
+      try {
+        const respuesta = await fetch('https://jsonplaceholder.typicode.com/users')
+
+        if (!respuesta.ok) {
+          throw new Error('No se pudieron obtener los usuarios')
+        }
+
+        this.usuarios = await respuesta.json()
+      } catch (error) {
+        this.error = error.message
+      } finally {
+        this.cargando = false
+      }
+    },
+
     seleccionarUsuario(id) {
       this.usuarioSeleccionadoId = id
     },
