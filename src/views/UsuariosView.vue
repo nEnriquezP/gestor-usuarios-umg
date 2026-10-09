@@ -1,28 +1,14 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import UsuarioCard from '../components/UsuarioCard.vue'
+import { useUsuariosStore } from '../stores/usuarios'
 
 const router = useRouter()
-
-const usuariosPrueba = [
-  {
-    id: 1,
-    nombre: 'Leanne Graham',
-    email: 'sincere@april.biz',
-  },
-  {
-    id: 2,
-    nombre: 'Ervin Howell',
-    email: 'shanna@melissa.tv',
-  },
-  {
-    id: 3,
-    nombre: 'Clementine Bauch',
-    email: 'nathan@yesenia.net',
-  },
-]
+const store = useUsuariosStore()
 
 function mostrarUsuario(id) {
+  store.seleccionarUsuario(id)
+
   router.push({
     name: 'usuario-detalle',
     params: {
@@ -38,14 +24,19 @@ function mostrarUsuario(id) {
       <h2>Usuarios</h2>
 
       <p>Lista de usuarios del Gestor de Usuarios UMG.</p>
+
+      <p>
+        <strong>Total de usuarios:</strong>
+        {{ store.totalUsuarios }}
+      </p>
     </div>
 
     <div class="lista-usuarios">
       <UsuarioCard
-        v-for="usuario in usuariosPrueba"
+        v-for="usuario in store.usuarios"
         :key="usuario.id"
         :id="usuario.id"
-        :nombre="usuario.nombre"
+        :nombre="usuario.name"
         :email="usuario.email"
         @ver-usuario="mostrarUsuario"
       />
