@@ -1,85 +1,64 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div class="app">
+    <header class="header">
+      <div class="contenedor">
+        <h1>Gestor de Usuarios UMG</h1>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+        <nav class="navegacion">
+          <RouterLink to="/">Inicio</RouterLink>
+          <RouterLink to="/usuarios">Usuarios</RouterLink>
+          <RouterLink to="/about">Acerca de</RouterLink>
+        </nav>
+      </div>
+    </header>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+    <main class="contenido">
+      <RouterView />
+    </main>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.header {
+  background-color: #1f2937;
+  color: white;
+  padding: 20px;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.contenedor {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+h1 {
+  margin: 0 0 15px;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.navegacion {
+  display: flex;
+  gap: 20px;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.navegacion a {
+  color: #d1d5db;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+.navegacion a:hover {
+  color: white;
 }
 
-nav a:first-of-type {
-  border: 0;
+.navegacion a.router-link-active {
+  color: #42b883;
+  font-weight: bold;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.contenido {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
 }
 </style>

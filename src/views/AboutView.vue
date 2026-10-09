@@ -1,15 +1,24 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <section class="acerca">
+    <h2>Acerca del proyecto</h2>
+
+    <p>Gestor de Usuarios UMG es una práctica integradora del curso de Desarrollo Web.</p>
+
+    <p>
+      El proyecto utiliza Vue 3, Vue Router, Pinia y una API REST para obtener y mostrar información
+      de usuarios.
+    </p>
+  </section>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+<style scoped>
+.acerca {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+h2 {
+  margin-top: 0;
 }
 </style>
