@@ -1,5 +1,5 @@
 <script setup>
-defineProps({
+const props = defineProps({
   id: {
     type: Number,
     required: true,
@@ -15,6 +15,12 @@ defineProps({
     required: true,
   },
 })
+
+const emit = defineEmits(['ver-usuario'])
+
+function verUsuario() {
+  emit('ver-usuario', props.id)
+}
 </script>
 
 <template>
@@ -28,7 +34,7 @@ defineProps({
       {{ email }}
     </p>
 
-    <button class="boton">Ver usuario</button>
+    <button class="boton" @click="verUsuario">Ver usuario</button>
   </article>
 </template>
 

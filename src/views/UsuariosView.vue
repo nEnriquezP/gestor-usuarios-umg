@@ -1,5 +1,8 @@
 <script setup>
+import { useRouter } from 'vue-router'
 import UsuarioCard from '../components/UsuarioCard.vue'
+
+const router = useRouter()
 
 const usuariosPrueba = [
   {
@@ -9,8 +12,8 @@ const usuariosPrueba = [
   },
   {
     id: 2,
-    nombre: 'Nelson Enriquez P',
-    email: 'laumg@gmail.com',
+    nombre: 'Ervin Howell',
+    email: 'shanna@melissa.tv',
   },
   {
     id: 3,
@@ -18,6 +21,15 @@ const usuariosPrueba = [
     email: 'nathan@yesenia.net',
   },
 ]
+
+function mostrarUsuario(id) {
+  router.push({
+    name: 'usuario-detalle',
+    params: {
+      id: id,
+    },
+  })
+}
 </script>
 
 <template>
@@ -35,6 +47,7 @@ const usuariosPrueba = [
         :id="usuario.id"
         :nombre="usuario.nombre"
         :email="usuario.email"
+        @ver-usuario="mostrarUsuario"
       />
     </div>
   </section>
