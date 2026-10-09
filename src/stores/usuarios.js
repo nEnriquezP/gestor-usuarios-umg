@@ -10,6 +10,10 @@ export const useUsuariosStore = defineStore('usuarios', {
 
   getters: {
     totalUsuarios: (state) => state.usuarios.length,
+
+    obtenerUsuarioPorId: (state) => {
+      return (id) => state.usuarios.find((usuario) => usuario.id === Number(id))
+    },
   },
 
   actions: {

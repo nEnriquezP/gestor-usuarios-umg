@@ -9,7 +9,9 @@ const router = useRouter()
 const store = useUsuariosStore()
 
 onMounted(() => {
-  store.cargarUsuarios()
+  if (store.usuarios.length === 0) {
+    store.cargarUsuarios()
+  }
 })
 
 function mostrarUsuario(id) {

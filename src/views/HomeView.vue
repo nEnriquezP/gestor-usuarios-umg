@@ -5,6 +5,10 @@
     <p>
       Aplicación desarrollada con Vue.js para practicar componentes, props, eventos, Vue Router,
       Pinia y consumo de una API REST.
+
+      Tarea hecha por:
+      Nelson Fernando Enriquez Portillo
+      Carné 0907-18-14024
     </p>
   </section>
 </template>
